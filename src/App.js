@@ -22,6 +22,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path='/' element={<Home/>}/>
+          <Route path='/code-deck' element={<Home/>}/>
           <Route path='/playground/:folderId/:playgroundId' element={<PlayGround/>}/>
           <Route path='*' element={<Page404/>}/>
         </Routes>
