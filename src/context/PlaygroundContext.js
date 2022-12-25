@@ -64,7 +64,7 @@ const PlaygroundContext = ({children}) => {
     }, [folders])
 
 
-// add created
+
     const addFolder = (folderName) => {
         setFolders((oldState) => {
             const newState = { ...oldState };
