@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/207.58631e46.chunk.js","mappings":"uIAQA,UANgB,WACd,OACE,gBAAKA,UAAU,cAAa,qBAEhC,C","sources":["pages/Page404.js"],"sourcesContent":["import React from 'react'\r\n\r\nconst Page404 = () => {\r\n  return (\r\n    <div className='text-black ' >Page404 </div>\r\n  )\r\n}\r\n\r\nexport default Page404"],"names":["className"],"sourceRoot":""}
