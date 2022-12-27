@@ -2,6 +2,9 @@ import React from 'react'
 
 import { GetModalContext } from '../context/ModalContext'
 import { NewFolder, NewPlayGround, NewPlayGroundAndFolder, EditFolder, EditPlayGroundTitle, Loading } from './ModalTypes'
+import InputFullScreen from './ModalTypes/InputFullScreen'
+import OutputFullScreen from './ModalTypes/OutputFullScreen'
+import SignSignUp from './ModalTypes/SignSignUp'
 
 const Modal = () => {
     const { isOpenModal } = GetModalContext()
@@ -21,6 +24,9 @@ const Modal = () => {
                 {modalType === 4 && <EditFolder />}
                 {modalType === 5 && <EditPlayGroundTitle />}
                 {modalType === 6 && <Loading />}
+                {modalType===7 && <SignSignUp/>}
+                {modalType===8 && <InputFullScreen/>}
+                {modalType===9 && <OutputFullScreen/>}
             </div>
         </div>
     </div>

@@ -21,11 +21,16 @@ const ModalContext = ({children}) => {
     const closeModal = () => {
         setIsOpenModal({ ...initialModalFields})
     }
-
+ const [currentInput,setCurrentInput] = useState('')
+ const [currentOutput, setCurrentOutput] = useState('')
     const ModalFeatures = {
         isOpenModal: isOpenModal,
         openModal: openModal,
         closeModal: closeModal,
+        currentInput:currentInput,
+        setCurrentInput:setCurrentInput,
+        currentOutput:currentOutput,
+       setCurrentOutput:setCurrentOutput,
     }
   return (
     <Context.Provider value={ModalFeatures}>

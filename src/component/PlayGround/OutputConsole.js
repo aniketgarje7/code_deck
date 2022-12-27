@@ -1,11 +1,20 @@
 import React from 'react'
-import { BiExport } from 'react-icons/bi'
+import { BiExport ,BiFullscreen} from 'react-icons/bi'
+import { GetModalContext } from '../../context/ModalContext'
 
-const OutputConsole = ({currentOutput}) => {
+const OutputConsole = () => {
+  const {openModal,currentOutput} = GetModalContext()
   return (
     <div className='flex flex-col'>
     <div className='bg-[#ededed] p-4 flex justify-between'>
-      <h3 className='font-bold'>Output :</h3>
+      <h3 className='font-bold flex justify-center'>Output : 
+      <BiFullscreen style={{fontSize:'1.5rem'}} onClick={()=>openModal({
+                      show:true,
+                      modalType:9,
+                      identifiers:{
+                        folderId:"",
+                        cardId:""
+                      }})}/> </h3>
       <a className='flex font-semibold gap-4'
         href={`data:text/plain;charset=utf-8,${encodeURIComponent(currentOutput)}`} download="output.txt">
         <BiExport className='text-2xl' /> Export Output

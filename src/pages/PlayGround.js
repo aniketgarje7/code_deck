@@ -12,13 +12,13 @@ import { GetPlayGroundContext,languageMap } from '../context/PlaygroundContext'
 const PlayGround = () => {
   const {folderId,playgroundId} = useParams();
   const { folders, savePlayground } = GetPlayGroundContext()
-  const { isOpenModal, openModal, closeModal } = GetModalContext()
+  const { isOpenModal, openModal, closeModal,currentInput,setCurrentOutput } = GetModalContext()
   const { title, language, code } = folders[folderId].playgrounds[playgroundId]
 
   const [currentLanguage, setCurrentLanguage] = useState(language)
   const [currentCode, setCurrentCode] = useState(code)
-  const [currentInput, setCurrentInput] = useState('')
-  const [currentOutput, setCurrentOutput] = useState('')
+  // const [currentInput, setCurrentInput] = useState('')
+  
   const [isFullScreen, setIsFullScreen] = useState(false);
 
 
@@ -147,7 +147,7 @@ const PlayGround = () => {
   
   <div>
       <Navbar isFullScreen={isFullScreen} />
-      <div className='flex flex-col lg:flex-row h-full'>
+      <div className='flex flex-col lg:flex-row h-full sm:w-screen'>
         <div className={`${isFullScreen ? "w-full" : "w-full lg:w-3/4 "}`}>
           <EditContainer
             title={title}
@@ -168,12 +168,12 @@ const PlayGround = () => {
           !isFullScreen &&
           <div className={`w-full lg:w-1/4`}>
             <InputConsol
-              currentInput={currentInput}
-              setCurrentInput={setCurrentInput}
+              // currentInput={currentInput}
+              // setCurrentInput={setCurrentInput}
               getFile={getFile}
             />
             <OutputConsol
-              currentOutput={currentOutput}
+              // currentOutput={currentOutput}
             />
           </div>
         }

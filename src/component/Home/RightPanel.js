@@ -25,6 +25,14 @@ const RightPanel = () => {
                 cardId: "",
             }
         })}><span className='font-semibold text-2xl cursor-pointer'>+</span> New Folder</h4>
+         <h4 onClick={() => openModal({
+                    show: true,
+                    modalType: 7,
+                    identifiers: {
+                        folderId: "",
+                        cardId: "",
+                    }
+                })}><span className='font-semibold text-2xl'></span> Login</h4>
     </div>
     <hr className="mb-12 mt-4 bg-black" />
 
