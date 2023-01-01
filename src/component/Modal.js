@@ -12,12 +12,14 @@ const Modal = () => {
   return (
     <>
     <div
-        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+        className="justify-center items-center flex overflow-x-auto
+        overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
     >
-        <div className="relative w-auto my-6 mx-auto max-w-3xl" onClick={e => {
+        <div className="relative w-auto my-6 mx-auto  max-w-3xl" onClick={e => {
             e.stopPropagation();
         }}>
-            <div className="border-0  rounded-lg shadow-lg relative flex flex-col w-[30rem] bg-white outline-none focus:outline-none">
+            <div className="border-0  rounded-lg shadow-lg relative flex flex-col sm:w-[30rem]
+             bg-white outline-none focus:outline-none w-auto">
                 {modalType === 1 && <NewFolder />}
                 {modalType === 2 && <NewPlayGround />}
                 {modalType === 3 && <NewPlayGroundAndFolder />}

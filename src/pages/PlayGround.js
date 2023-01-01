@@ -32,6 +32,7 @@ const PlayGround = () => {
 
   const saveCode = () => {
     savePlayground(folderId, playgroundId, currentCode, currentLanguage)
+    alert('code saved')
   }
 
   const postSubmission = async (language_id, source_code, stdin) => {

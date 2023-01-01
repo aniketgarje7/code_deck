@@ -4,7 +4,7 @@ import { GetModalContext } from '../../context/ModalContext'
 const OutputFullScreen = () => {
     const {closeModal,currentOutput} = GetModalContext()
   return (
-    <div className='h-96 w-full'>
+    <div className='h-96 w-full sm:w-16'>
     <div className='flex justify-end p-4'>
       <AiOutlineClose onClick={()=>closeModal()} className='h-4 w-4 cursor-pointer '/>
       </div>

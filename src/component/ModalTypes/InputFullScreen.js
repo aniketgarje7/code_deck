@@ -6,11 +6,11 @@ const InputFullScreen = () => {
   return (
     <>
     
-    <div className='h-96 w-full '>
+    <div className='h-96 w-full lg:w-screen lg:h-screen '>
       <div className='flex justify-end p-4'>
         <AiOutlineClose onClick={()=>closeModal()} className='h-4 w-4 cursor-pointer '/>
         </div >
-      <textarea  className='h-[calc(80vh_-_4rem)] w-full !outline-none rounded p-4'  onChange={(e)=>setCurrentInput(e.target.value)}
+      <textarea  className='h-[calc(80vh_-_4rem)] w-full !outline-none rounded p-4 lg:width-screen lg:h-screen'  onChange={(e)=>setCurrentInput(e.target.value)}
         value={currentInput}/>
     </div>
     

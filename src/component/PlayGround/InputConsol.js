@@ -10,13 +10,14 @@ const InputConsol = ({  getFile}) => {
     <div className='flex flex-col'>
             <div className='bg-[#ededed] p-4 flex justify-between'>
                 <h3 className='font-bold flex justify-center'>Input :  
-                <BiFullscreen style={{fontSize:'1.5rem'}} onClick={()=>openModal({
+                {/* <BiFullscreen style={{fontSize:'1.5rem'}} onClick={()=>openModal({
                       show:true,
                       modalType:8,
                       identifiers:{
                         folderId:folderId,
                         cardId:""
-                      }})}  /></h3>
+                      }})}  />*/}
+                      </h3> 
                
                 <label htmlFor="inputfile" className='flex items-center font-semibold gap-3'>
                     <input className="hidden" type="file" accept="." id="inputfile" onChange={(e) => getFile(e, setCurrentInput)} /> 

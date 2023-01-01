@@ -4,8 +4,8 @@ import { GetModalContext } from '../../context/ModalContext'
 import {GetPlayGroundContext} from '../../context/PlaygroundContext'
 const EditFolder = () => {
     const{closeModal , isOpenModal} =GetModalContext()
-  const { editFolderTitle, folders } = GetPlayGroundContext
-
+  const { editFolderTitle, folders } = GetPlayGroundContext()
+   console.log('edit folder')
   const folderId = isOpenModal.identifiers.folderId;
   const [ folderTitle, setFolderTitle ] = useState(folders[folderId].title)
   return (
