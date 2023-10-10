@@ -9,10 +9,9 @@ import {GetPlayGroundContext} from '../../context/PlaygroundContext'
 import logoSmall from './logo-small.png'
 
 const RightPanel = () => {
-    const navigate = useNavigate()
-    const { openModal } = GetModalContext()
-    const { folders, deleteFolder, deleteCard } = GetPlayGroundContext()
-    console.log(folders)
+    const navigate = useNavigate();
+    const { openModal } = GetModalContext();
+    const { folders, deleteFolder, deleteCard } = GetPlayGroundContext();
   return (
     <div className='border-black h-screen p-8'>
     <div className='flex justify-between placeholder:mt-8 items-center'>
@@ -37,7 +36,7 @@ const RightPanel = () => {
     <hr className="mb-12 mt-4 bg-black" />
 
     {Object.entries(folders).map(([folderId, folder]) => (
-        <div className='flex-col flex my-8'>
+        <div className='flex-col flex my-8' key={folderId}>
             <div className='flex justify-between placeholder:mt-8 items-center'>
                 <div className='flex gap-4 items-center'>
                     <FcOpenedFolder size={'2em'} />
@@ -64,8 +63,8 @@ const RightPanel = () => {
                     ><span className='font-semibold text-2xl cursor-pointer'>+</span> {" "}New Playground</h5>
                 </div>
             </div>
-            <hr class="mb-4 mt-4 bg-black" />
-            <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
+            <hr className="mb-4 mt-4 bg-black" />
+            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
                 {Object.entries(folder['playgrounds']).map(([playgroundId, playground]) => (
                     <Card key={playgroundId}>
                         <div onClick={(e) => {
@@ -73,7 +72,7 @@ const RightPanel = () => {
                             
                             navigate(`/playground/${folderId}/${playgroundId}`)
                         }}
-                            className='flex items-center justify-between'>
+                            className='flex items-center justify-between cursor-pointer'>
                             <div className='flex gap-4 items-center'>
                                 <img src={logoSmall} alt='' />
                                 <div>
@@ -85,7 +84,7 @@ const RightPanel = () => {
                                 
                                 e.stopPropagation(); 
                             }}>
-                                <BiEditAlt size={'1.2em'} onClick={() => openModal({
+                                <BiEditAlt size={'1.2em'} className='cursor-pointer' onClick={() => openModal({
                                     show: true,
                                     modalType: 5,
                                     identifiers: {

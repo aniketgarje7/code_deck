@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Loading = () => {
   return (
-    <div>Loading...</div>
-  )
-}
+    <div className="text-center loader">
+      Loading...
+    </div>
+  );
+};
 
-export default Loading
+export default Loading;

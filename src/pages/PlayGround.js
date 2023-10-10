@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import Navbar from '../component/PlayGround/Navbar'
 import EditContainer from '../component/PlayGround/EditContainer'
 import Modal from '../component/Modal'
@@ -9,6 +9,8 @@ import { Buffer  } from 'buffer'
 import { useParams } from 'react-router-dom'
 import { GetModalContext } from '../context/ModalContext'
 import { GetPlayGroundContext,languageMap } from '../context/PlaygroundContext'
+import { toast } from 'react-toastify'
+
 const PlayGround = () => {
   const {folderId,playgroundId} = useParams();
   const { folders, savePlayground } = GetPlayGroundContext()
@@ -20,7 +22,29 @@ const PlayGround = () => {
   // const [currentInput, setCurrentInput] = useState('')
   
   const [isFullScreen, setIsFullScreen] = useState(false);
+  
+  const startLoading = ()=>{
+    openModal({
+      show: true,
+      modalType: 6,
+      identifiers: {
 
+        folderId: "",
+        cardId: "",
+      }
+    })
+  };
+  const stopLoading = ()=>{
+    openModal({
+      show: false,
+      modalType: 6,
+      identifiers: {
+
+        folderId: "",
+        cardId: "",
+      }
+    })
+  }
 
   const encode = (str) => {
     return Buffer.from(str, "binary").toString("base64")
@@ -31,20 +55,19 @@ const PlayGround = () => {
   }
 
   const saveCode = () => {
-    savePlayground(folderId, playgroundId, currentCode, currentLanguage)
-    alert('code saved')
+    savePlayground(folderId, playgroundId, currentCode, currentLanguage);
+    toast.success('code saved ');
   }
 
   const postSubmission = async (language_id, source_code, stdin) => {
     const options = {
       method: 'POST',
-      url: 'https://judge0-ce.p.rapidapi.com/submissions',
+      url: `${process.env.REACT_APP_JUDGEO_API}`,
       params: { base64_encoded: 'true', fields: '*' },
       headers: {
-        'content-type': 'application/json',
         'Content-Type': 'application/json',
-        'X-RapidAPI-Key': 'b4e5c5a05fmsh9adf6ec091523f8p165338jsncc58f31c26e1',
-        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+        'X-RapidAPI-Key': `${process.env.REACT_APP_RAPID_API_KEY}`,
+        'X-RapidAPI-Host': `${process.env.REACT_APP_JUDGEO_RAPID_HOST}`
       },
       data: JSON.stringify({
         language_id: language_id,
@@ -52,9 +75,16 @@ const PlayGround = () => {
         stdin: stdin
       })
     };
-
-    const res = await axios.request(options);
-    return res.data.token
+      try{
+        const res = await axios.request(options);
+        return res?.data?.token
+      }
+      catch(e){
+        console.log(e,' post submission error');
+        stopLoading();
+        throw new Error('fialed at get token');
+      }
+    
   }
 
 
@@ -62,63 +92,67 @@ const PlayGround = () => {
     
     const options = {
       method: 'GET',
-      url: "https://judge0-ce.p.rapidapi.com/submissions/" + token,
+      url: `${process.env.REACT_APP_JUDGEO_API}/` + token,
       params: { base64_encoded: 'true', fields: '*' },
       headers: {
-        'X-RapidAPI-Key': 'b4e5c5a05fmsh9adf6ec091523f8p165338jsncc58f31c26e1',
-        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+        'X-RapidAPI-Key': `${process.env.REACT_APP_RAPID_API_KEY}`,
+        'X-RapidAPI-Host': `${process.env.REACT_APP_JUDGEO_RAPID_HOST}`
       }
     };
 
-  
-    const res = await axios.request(options);
-    if (res.data.status_id <= 2) {
-      const res2 = await getOutput(token);
-      return res2.data;
+    try{
+      const res = await axios.request(options);
+      if (res.data?.status_id <= 2) {
+        const res2 = await getOutput(token);
+        return res2;
+      }
+      return res.data;
     }
-    return res.data;
+    catch(e){
+      toast.error(e.message);
+      stopLoading();
+      console.log(e,'getoutput error');
+    }
+   
   }
 
+  
   const runCode = async () => {
-    openModal({
-      show: true,
-      modalType: 6,
-      identifiers: {
-
-        folderId: "",
-        cardId: "",
-      }
-    })
+    startLoading();
     const language_id = languageMap[currentLanguage].id;
     const source_code = encode(currentCode);
     const stdin = encode(currentInput);
 
-  
-    const token = await postSubmission(language_id, source_code, stdin);
-
-    
-    const res = await getOutput(token);
-    const status_name = res.status.description;
-    const decoded_output = decode(res.stdout ? res.stdout : '');
-    const decoded_compile_output = decode(res.compile_output ? res.compile_output : '');
-    const decoded_error = decode(res.stderr ? res.stderr : '');
-    console.log(res)
-    console.log(decode(res.stdout),res.compile_output)
-    let final_output = '';
-    if (res.status_id !== 3) {
-      
-      if (decoded_compile_output === "") {
-        final_output = decoded_error;
+    try{
+      const token = await postSubmission(language_id, source_code, stdin);
+       
+      const res = await getOutput(token);
+      const status_name = res.status.description;
+      const decoded_output = decode(res.stdout ? res.stdout : '');
+      const decoded_compile_output = decode(res.compile_output ? res.compile_output : '');
+      const decoded_error = decode(res.stderr ? res.stderr : '');
+      let final_output = '';
+      if (res.status_id !== 3) {
+        
+        if (decoded_compile_output === "") {
+          final_output = decoded_error;
+        }
+        else {
+          final_output = decoded_compile_output;
+        }
       }
       else {
-        final_output = decoded_compile_output;
+        final_output = decoded_output;
       }
+      setCurrentOutput(status_name + "\n\n" + final_output);
+      closeModal();
     }
-    else {
-      final_output = decoded_output;
+    catch(e){
+      toast.error(e.message);
+      console.log(e,'error');
+      stopLoading();
     }
-    setCurrentOutput(status_name + "\n\n" + final_output);
-    closeModal();
+   
   }
   const getFile = (e, setState) => {
     const input = e.target;

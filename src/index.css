@@ -37,3 +37,8 @@
     -moz-osx-font-smoothing: grayscale;
     background-color: #f8f8fa;
   }
+
+  .loader{
+    background: turquoise;
+    border-radius: 8px;
+  }

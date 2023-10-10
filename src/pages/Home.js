@@ -6,13 +6,10 @@ import Modal from '../component/Modal'
 
 
 const Home = () => {
-
-
 const { isOpenModal } = GetModalContext();
-  console.log(isOpenModal.show)
   return (
     <>
-      <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 sm:h-screen ">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 sm:h-screen ">
         <div className='lg:w-24rem  md:w-full sm:w-screen    '>
           <LeftPanel />
         </div>
@@ -20,10 +17,9 @@ const { isOpenModal } = GetModalContext();
           <RightPanel/>
         </div>
         {isOpenModal.show && <Modal />}
-
       </div>
     </>
   )
 }
 
-export default Home
+export default Home;

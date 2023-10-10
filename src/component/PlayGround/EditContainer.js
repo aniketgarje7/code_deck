@@ -107,7 +107,7 @@ const EditContainer = ({
                         <BiFullscreen style={{ fontSize: "1.5rem" }} /> {isFullScreen ? 'Minimize Screen' : 'Full Screen'}
                     </button>
 
-                    <label className="flex gap-3 items-center" htmlFor="codefile">
+                    <label className="flex gap-3 items-center cursor-pointer" htmlFor="codefile">
                         <input className="hidden" type="file" accept="." id="codefile" 
                         onChange={(e) => getFile(e, setCurrentCode)} /> 
                         <BiImport style={{ fontSize: "1.5rem" }} /> Import Code

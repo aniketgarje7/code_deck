@@ -1,6 +1,7 @@
 import React from 'react'
 import { Suspense } from 'react'
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {BrowserRouter as Router ,Routes,Route} from 'react-router-dom'
 const Home = React.lazy(()=>import('./pages/Home'))
 const PlayGround = React.lazy(()=>import('./pages/PlayGround'))
@@ -12,7 +13,7 @@ const App = () => {
   const Loader = () => {
     <div className='flex justify-center items-center'>
       <div className='spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full ' role="status">
-        <span className='visually-hidden'>Loading .... </span>
+        <span className=''>Loading .... </span>
       </div>
     </div>
   }
@@ -27,9 +28,10 @@ const App = () => {
           <Route path='*' element={<Page404/>}/>
         </Routes>
     </Router> 
+    <ToastContainer />
     </Suspense>
    
   )
 }
 
-export default App
+export default App;
