@@ -70,7 +70,7 @@ const RightPanel = () => {
                         <div onClick={(e) => {
                             e.stopPropagation(); 
                             
-                            navigate(`/playground/${folderId}/${playgroundId}`)
+                            navigate(`/code_deck/playground/${folderId}/${playgroundId}`)
                         }}
                             className='flex items-center justify-between cursor-pointer'>
                             <div className='flex gap-4 items-center'>

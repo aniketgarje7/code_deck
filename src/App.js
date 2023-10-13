@@ -24,7 +24,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/code_deck' element={<Home/>}/>
-          <Route path='/playground/:folderId/:playgroundId' element={<PlayGround/>}/>
+          <Route path='/code_deck/playground/:folderId/:playgroundId' element={<PlayGround/>}/>
           <Route path='*' element={<Page404/>}/>
         </Routes>
     </Router> 
