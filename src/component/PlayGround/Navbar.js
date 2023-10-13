@@ -7,7 +7,7 @@ const Navbar = ({isFullScreen}) => {
   return (
     <div className={`relative ${isFullScreen ?"h-0":"h-16"} bg-black flex justify-center items-center gap-4`}>
     <img className='w-16 cursor-pointer' src={logo} alt='logo' onClick={()=>{
-      navigate('/code_deck');
+      navigate('/');
     }}/>
     <div className='text-white text-2xl'>
       Code Deck

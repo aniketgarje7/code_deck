@@ -2,7 +2,7 @@ import React from 'react'
 import { Suspense } from 'react'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {BrowserRouter as Router ,Routes,Route} from 'react-router-dom'
+import {HashRouter as Router ,Routes,Route} from 'react-router-dom'
 const Home = React.lazy(()=>import('./pages/Home'))
 const PlayGround = React.lazy(()=>import('./pages/PlayGround'))
 const Page404 = React.lazy(()=>import('./pages/Page404'))
