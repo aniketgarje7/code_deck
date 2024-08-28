@@ -6,13 +6,11 @@ import { useForm } from 'react-hook-form'
 import 'react-toastify/dist/ReactToastify.css';
 import { toastArray } from "./Toast";
 import { toast } from "react-toastify";
-import {GetModalContext} from '../../context/ModalContext'
 import { ToastContainer } from "react-toastify";
 import FormInput from './FormInput';
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { async } from '@firebase/util'
-const SignIn = ({setSignInShow}) => {
-    const { closeModal } = GetModalContext()
+const SignIn = () => {  
     const validationSchema = yup.object().shape({
         email: yup.string().email('Invalid Email').required("Required Field"),
         password: yup.string().required("Required Field").min(6)
@@ -54,10 +52,10 @@ const SignIn = ({setSignInShow}) => {
             required
         />
     </form>
-    <button type='submit' form='hook-form' className='w-full border-2 bg-white p-3 mt-8 font-semibold shadow-lg rounded-lg'> Sign In</button>
+    <button type='submit' form='hook-form' className='w-full border-2 bg-white p-3 mt-8 font-semibold shadow-lg rounded-lg'>LOGIN</button>
     <ToastContainer />
 </div>
   )
 }
 
-export default SignIn
+export default SignIn;

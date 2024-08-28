@@ -29,7 +29,16 @@
       @apply text-sm
     }
   }
-  
+  hr{
+    border-color: #1e1e1e;
+    border-top-width: 1px;
+  }
+  input{
+    border-color: gray;
+  }
+  button{
+    border-color:gray
+  }
   body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
