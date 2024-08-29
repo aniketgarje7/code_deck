@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import {auth} from '../../firebaseCode'
+import {auth} from '../../Utils/firebaseCode'
 import { useForm } from 'react-hook-form'
 import 'react-toastify/dist/ReactToastify.css';
 import { toastArray } from "./Toast";

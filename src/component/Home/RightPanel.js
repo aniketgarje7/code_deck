@@ -13,6 +13,9 @@ const RightPanel = () => {
   const navigate = useNavigate();
   const { openModal } = GetModalContext();
   const { folders, deleteFolder, deleteCard } = GetPlayGroundContext();
+  const foldersArr = Object.entries(folders??{});
+  // const sortedItems = foldersArr.sort((a, b) => b.created_at?.toDate() - a.created_at?.toDate());
+  console.log({folders})
   return (
     <div className="border-code_deck_black h-screen p-8 pt-2">
       <AuthButtons />
@@ -48,8 +51,8 @@ const RightPanel = () => {
       </div>
       <hr className="mb-12 mt-4 bg-[#1e1e1e] border-t border-black" />
 
-      {Object.entries(folders).map(([folderId, folder]) => (
-        <div className="flex-col flex my-8" key={folderId}>
+      {foldersArr.map(([folderId, folder]) => (
+        <div className="flex-col flex my-8" key={folderId+'folders'}>
           <div className="flex justify-between placeholder:mt-8 items-center">
             <div className="flex gap-4 items-center">
               <FcOpenedFolder size={"2em"} />

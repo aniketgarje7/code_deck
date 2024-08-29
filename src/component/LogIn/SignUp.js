@@ -3,7 +3,7 @@ import React,{useState} from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
-import { auth } from '../../firebaseCode'
+import { auth } from '../../Utils/firebaseCode'
 import FormInput from './FormInput'
 import { toast } from "react-toastify";
 import { toastArray } from "./Toast";

@@ -4,7 +4,7 @@ import SignIn from "../LogIn/SignIn";
 import { GetModalContext } from "../../context/ModalContext";
 import { RxCross1 } from "react-icons/rx";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../../firebaseCode";
+import { auth } from "../../Utils/firebaseCode";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Button } from "@material-tailwind/react";
 const SignSignUp = () => {
